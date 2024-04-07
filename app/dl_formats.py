@@ -90,7 +90,7 @@ def get_opts(format: str, quality: str, ytdl_opts: dict) -> dict:
         opts.update({
             "skip_download": True,
             "write_subs": True,
-            "write_auto_subs": True if quality == "auto" else False,
+            "write_auto_subs": True, #if quality == "auto" else False,
             "sub_lang": quality,
             "sub_format": "ttml",
             "convert_subs": "srt",
