@@ -73,4 +73,20 @@ export const Formats: Format[] = [
       { id: 'best', text: 'Best' }
     ],
   },
-];
+  {
+    id: 'subtitles',
+    text: 'Subtitles',
+    qualities: [
+      { id: 'en', text: 'English' },
+      { id: 'es', text: 'Spanish' },
+      { id: 'fr', text: 'French' },
+      { id: 'de', text: 'German' },
+      { id: 'zh', text: 'Chinese' },
+      { id: 'hi', text: 'Hindi' },
+      { id: 'ar', text: 'Arabic' },
+      { id: 'ru', text: 'Russian' },
+      { id: 'pt', text: 'Portuguese' },
+      { id: 'ja', text: 'Japanese' },
+    ],
+    },
+  ]; 
