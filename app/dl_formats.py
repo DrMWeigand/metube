@@ -93,7 +93,7 @@ def get_opts(format: str, quality: str, ytdl_opts: dict) -> dict:
             "write_auto_subs": True, #if quality == "auto" else False,
             "sub_lang": quality,
             "sub_format": "ttml",
-            "convert_subs": "srt",
+            #"convert_subs": "srt",
             "outtmpl": {"default": "transcript.srt"}
         })
         # The post-processing for subtitles, if needed, can be added here
