@@ -83,10 +83,10 @@ class Download:
                     else:
                         filename = d['info_dict']['filepath']
                     self.status_queue.put({'status': 'finished', 'filename': filename})
-            ret = yt_dlp.YoutubeDL(params={
+
+            yt_dlp_params = {
                 'quiet': True,
                 'no_color': True,
-                #'skip_download': True,
                 'paths': {"home": self.download_dir, "temp": self.temp_dir},
                 'outtmpl': { "default": self.output_template, "chapter": self.output_template_chapter },
                 'format': self.format,
@@ -95,7 +95,14 @@ class Download:
                 'progress_hooks': [put_status],
                 'postprocessor_hooks': [put_status_postprocessor],
                 **self.ytdl_opts,
-            }).download([self.info.url])
+            }
+            
+            # debug output of all parameters used for yt_dlp_YoutubeDL
+            log.info(f'yt_dlp_params: {yt_dlp_params}')
+            
+            ret = yt_dlp.YoutubeDL(params=yt_dlp_params).download([self.info.url])
+            
+            
             self.status_queue.put({'status': 'finished' if ret == 0 else 'error'})
         except yt_dlp.utils.YoutubeDLError as exc:
             self.status_queue.put({'status': 'error', 'msg': str(exc)})
