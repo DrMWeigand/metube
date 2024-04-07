@@ -98,7 +98,8 @@ class Download:
 
             if self.format != "subtitles":
                 yt_dlp_params['format'] = self.format
-            
+            yt_dlp_params['verbose'] = True
+
             # debug output of all parameters used for yt_dlp_YoutubeDL
             log.info(f'yt_dlp_params: {yt_dlp_params}')
             
