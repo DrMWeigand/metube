@@ -10,5 +10,4 @@ services:
     ports:
       - "8086:8081"
     volumes:
-      volumes:
         - metube_data:/downloads
