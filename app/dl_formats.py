@@ -94,7 +94,7 @@ def get_opts(format: str, quality: str, ytdl_opts: dict) -> dict:
             "sub_lang": quality,
             "sub_format": "ttml",
             "convert_subs": "srt",
-            "outtmpl": {"default": f"transcript.{quality}.%(ext)s"}  # Adjusted to include language code
+            "outtmpl": {"default": f"transcript.{quality}.srt"}  # Adjusted to include language code
         })
         # The post-processing for subtitles, if needed, can be added here
         
