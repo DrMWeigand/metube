@@ -82,6 +82,8 @@ class Download:
                         filename = os.path.join(d['info_dict']['__finaldir'], os.path.basename(d['info_dict']['filepath']))
                     else:
                         filename = d['info_dict']['filepath']
+                    # log filename
+                    log.info(f'OUTPUT!! filename: {filename}')
                     self.status_queue.put({'status': 'finished', 'filename': filename})
 
             yt_dlp_params = {
@@ -108,6 +110,7 @@ class Download:
             
             self.status_queue.put({'status': 'finished' if ret == 0 else 'error'})
         except yt_dlp.utils.YoutubeDLError as exc:
+            log.error(f'error downloading {self.info.url}: {exc}')
             self.status_queue.put({'status': 'error', 'msg': str(exc)})
 
     async def start(self, notifier):
