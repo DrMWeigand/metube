@@ -38,7 +38,13 @@ def get_format(format: str, quality: str) -> str:
         vcombo = vres + vfmt
 
         return f"bestvideo{vcombo}+bestaudio{afmt}/best{vcombo}"
-
+      
+    if format == "subtitles":
+        # For subtitles, the actual format string doesn't matter for yt-dlp,
+        # as it's handled via the options in ytdl_opts.
+        # Just return a string that indicates subtitles are being handled.
+        return "subtitles"
+      
     raise Exception(f"Unkown format {format}")
 
 
