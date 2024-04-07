@@ -43,7 +43,7 @@ def get_format(format: str, quality: str) -> str:
         # For subtitles, the actual format string doesn't matter for yt-dlp,
         # as it's handled via the options in ytdl_opts.
         # Just return a string that indicates subtitles are being handled.
-        return "bestvideo+bestaudio/best"
+        return "subtitles"
       
     raise Exception(f"Unkown format {format}")
 
@@ -94,7 +94,7 @@ def get_opts(format: str, quality: str, ytdl_opts: dict) -> dict:
             "sub_lang": quality,
             "sub_format": "ttml",
             "convert_subs": "srt",
-            "outtmpl": {"default": "transcript.%(ext)s"}
+            "outtmpl": {"default": "transcript.srt"}
         })
         # The post-processing for subtitles, if needed, can be added here
         

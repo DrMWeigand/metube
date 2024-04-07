@@ -89,13 +89,15 @@ class Download:
                 'no_color': True,
                 'paths': {"home": self.download_dir, "temp": self.temp_dir},
                 'outtmpl': { "default": self.output_template, "chapter": self.output_template_chapter },
-                'format': self.format,
                 'socket_timeout': 30,
                 'ignore_no_formats_error': True,
                 'progress_hooks': [put_status],
                 'postprocessor_hooks': [put_status_postprocessor],
                 **self.ytdl_opts,
             }
+
+            if self.format != "subtitles":
+                yt_dlp_params['format'] = self.format
             
             # debug output of all parameters used for yt_dlp_YoutubeDL
             log.info(f'yt_dlp_params: {yt_dlp_params}')
