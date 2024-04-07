@@ -79,5 +79,18 @@ def get_opts(format: str, quality: str, ytdl_opts: dict) -> dict:
         opts["writethumbnail"] = True
         postprocessors.append({"key": "FFmpegThumbnailsConvertor", "format": "jpg", "when": "before_dl"})
     
+    # Handle subtitle download
+    if format == "subtitles":
+        opts.update({
+            "skip_download": True,
+            "write_subs": True,
+            "write_auto_subs": True if quality == "auto" else False,
+            "sub_lang": quality,
+            "sub_format": "ttml",
+            "convert_subs": "srt",
+            "outtmpl": {"default": "transcript.%(ext)s"}
+        })
+        # The post-processing for subtitles, if needed, can be added here
+        
     opts["postprocessors"] = postprocessors + (opts["postprocessors"] if "postprocessors" in opts else [])
     return opts
