@@ -89,11 +89,12 @@ def get_opts(format: str, quality: str, ytdl_opts: dict) -> dict:
     if format == "subtitles":
         opts.update({
             "skip_download": True,
-            "write_subs": True,
-            "write_auto_subs": True, #if quality == "auto" else False,
+            "write_sub": True,
+            "write_auto_sub": True, #if quality == "auto" else False,
             "sub_lang": quality,
             "sub_format": "ttml",
             "convert_subs": "srt",
+            "output": "transcript",
             "outtmpl": {"default": f"transcript.{quality}.srt"}  # Adjusted to include language code
         })
         # The post-processing for subtitles, if needed, can be added here
